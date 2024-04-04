@@ -43,10 +43,4 @@ const ConfirmButton = styled.button`
   box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
-const Error = styled.p`
-  color: red;
-  font-size: 12px;
-  font-family: Overpass, sans-serif;
-`;
-
-export { TitleWrapper, Title, FormWrapper, ConfirmButton, Error };
+export { TitleWrapper, Title, FormWrapper, ConfirmButton };

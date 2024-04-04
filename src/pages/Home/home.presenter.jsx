@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import {
+  FormWrapper,
+  TitleWrapper,
+  Title,
+  ConfirmButton,
+  Error,
+} from "./home.styles";
+import Input from "../../components/InputField/input-field.component";
 
-import { FormWrapper, TitleWrapper, Title, ConfirmButton } from "./home.styles";
-import Input from "../../components/InputFields/input-field.component";
-
-const HomeComponent = () => {
-  const [shippingType, setShippingType] = useState("");
-
-  const onChangeHandler = (event) => {
-    console.log(event.target.value);
-    setShippingType(event.target.value);
-  };
-
+const HomeComponent = ({
+  onChangeHandler,
+  shippingType,
+  onClickHandler,
+  error,
+  children,
+}) => {
   return (
     <div>
       <TitleWrapper>
@@ -34,7 +37,8 @@ const HomeComponent = () => {
           onChange={onChangeHandler}
           checked={shippingType === "Sea Fright"}
         />
-        <ConfirmButton>Confirm</ConfirmButton>
+        <ConfirmButton onClick={onClickHandler}>Confirm</ConfirmButton>
+        <Error>{error && error}</Error>
       </FormWrapper>
     </div>
   );

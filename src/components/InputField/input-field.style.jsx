@@ -1,5 +1,63 @@
 import styled, { css } from "styled-components";
 
+const ControlStyles = css`
+  background-color: white;
+  box-shadow: 0 6px 7px rgba(27, 28, 32, 0.3);
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  height: 52px;
+  font-family: inherit;
+  font-weight: 100;
+  font-size: 14px;
+  padding: 16px 26px;
+
+  &:placeholder {
+    color: #8b8b8b;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+
+    & + button {
+      opacity: 0.7;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Label = styled.label`
+  color: #6e8ca0;
+  font-size: 15px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  a {
+    color: #d97d54;
+
+    &:hover {
+      color: black;
+    }
+  }
+`;
+
+const Select = styled.div`
+  ${ControlStyles}
+
+  select {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    cursor: pointer;
+  }
+`;
+
 const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -50,4 +108,4 @@ const StyledRadioButton = styled.div`
   ${StyledRadioButtonStyles}
 `;
 
-export { InputWrapper, HiddenInput, StyledRadioButton };
+export { InputWrapper, HiddenInput, StyledRadioButton, Label, Select };

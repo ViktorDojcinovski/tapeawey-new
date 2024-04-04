@@ -1,9 +1,17 @@
-const AreaPick = ({ area, setArea }) => {
+import React, { useState } from "react";
+
+import AreaPickPresenter from "./area-pick.presenter";
+import withHeaderAndFooter from "../../hocs/withHeaderAndFooter";
+
+const AreaPick = () => {
+  const [area, setArea] = useState("");
+
   return (
-    <div>
-      <h1>AreaPick compenent</h1>
-    </div>
+    <AreaPickPresenter
+      onChangeHandler={(event) => setArea(event.target.value)}
+      area={area}
+    />
   );
 };
 
-export default AreaPick;
+export default withHeaderAndFooter(AreaPick);
