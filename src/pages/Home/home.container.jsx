@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import withHeaderAndFooter from "../../hocs/withHeaderAndFooter";
 import HomeComponent from "./home.presenter";
+import { fetchShippingTypes } from "../../redux/shop/shop.thunks";
+import { setShippingTypeRedux } from "../../redux/shop/shop.actions";
 
 const Home = () => {
   const history = useHistory();
-
-  const [shippingType, setShippingType] = useState(null);
+  const [shippingType, setShippingType] = useState("");
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const shippingTypes = useSelector((state) => state.shop.shippingTypes);
+
+  useEffect(() => {
+    dispatch(fetchShippingTypes());
+  }, [dispatch]);
 
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
     setShippingType(event.target.value);
+    dispatch(setShippingTypeRedux(event.target.value));
   };
 
   const onClickHandler = (event) => {
@@ -31,6 +39,7 @@ const Home = () => {
         onChangeHandler={onChangeHandler}
         onClickHandler={onClickHandler}
         shippingType={shippingType}
+        shippingTypes={shippingTypes}
         error={error}
       />
     </>

@@ -4,6 +4,8 @@ import {
   StyledRadioButton,
   Label,
   Select,
+  DateWrap,
+  Date,
 } from "./input-field.style";
 
 // Create a function that returns an input field according to the type of input field
@@ -17,6 +19,12 @@ const getInputElement = ({
   placeholder,
 }) => {
   switch (type) {
+    case "date":
+      return (
+        <DateWrap>
+          <Date type={type} name={name} onChange={onChange} value={value} />
+        </DateWrap>
+      );
     case "radio":
       return (
         <Label htmlFor={value}>

@@ -7,9 +7,13 @@ import {
 } from "./home.styles";
 import Input from "../../components/InputField/input-field.component";
 
+// { boolean ? <></> : <></> }
+// { boolean && <></> }
+
 const HomeComponent = ({
   onChangeHandler,
   shippingType,
+  shippingTypes,
   onClickHandler,
   error,
   children,
@@ -23,20 +27,18 @@ const HomeComponent = ({
       </TitleWrapper>
 
       <FormWrapper>
-        <Input
-          type="radio"
-          name="delivery"
-          value="Courier Service"
-          onChange={onChangeHandler}
-          checked={shippingType === "Courier Service"}
-        />
-        <Input
-          type="radio"
-          name="delivery"
-          value="Sea Fright"
-          onChange={onChangeHandler}
-          checked={shippingType === "Sea Fright"}
-        />
+        {shippingTypes &&
+          shippingTypes.map((type) => {
+            return (
+              <Input
+                type="radio"
+                name="delivery"
+                value={type}
+                onChange={onChangeHandler}
+                checked={shippingType === type}
+              />
+            );
+          })}
         <ConfirmButton onClick={onClickHandler}>Confirm</ConfirmButton>
         <Error>{error && error}</Error>
       </FormWrapper>

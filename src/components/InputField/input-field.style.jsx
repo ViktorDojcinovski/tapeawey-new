@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 
+// padded string literal func``
 const ControlStyles = css`
   background-color: white;
   box-shadow: 0 6px 7px rgba(27, 28, 32, 0.3);
@@ -43,8 +44,37 @@ const Label = styled.label`
   }
 `;
 
+const Date = styled.input``;
+
+const DateWrap = styled.div`
+  box-shadow: 0 6px 7px rgba(27, 28, 32, 0.3);
+  border-radius: 5px;
+  width: 100%;
+  height: 52px;
+  background-color: white;
+  ${Date} {
+    width: 100%;
+    height: 100%;
+    padding: 16px 26px;
+    font-family: inherit;
+    font-weight: 100;
+    font-size: 14px;
+    border: none;
+    &:placeholder {
+      color: #8b8b8b;
+    }
+    &:disabled {
+      opacity: 0.7;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+`;
+
 const Select = styled.div`
   ${ControlStyles}
+  position: relative;
 
   select {
     width: 100%;
@@ -108,4 +138,12 @@ const StyledRadioButton = styled.div`
   ${StyledRadioButtonStyles}
 `;
 
-export { InputWrapper, HiddenInput, StyledRadioButton, Label, Select };
+export {
+  InputWrapper,
+  HiddenInput,
+  StyledRadioButton,
+  Label,
+  Select,
+  DateWrap,
+  Date,
+};
