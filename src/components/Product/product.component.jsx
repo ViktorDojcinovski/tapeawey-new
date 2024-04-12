@@ -20,7 +20,7 @@ const Product = ({ toCart, history, product, setProductActive }) => {
   return (
     <Wrapper>
       <ImageWrapper>
-        <img src="" alt={name} />
+        <img src={image} alt={name} />
       </ImageWrapper>
       <ProductName>{name}</ProductName>
       <ProductDescription>{description}</ProductDescription>
@@ -41,7 +41,7 @@ const Product = ({ toCart, history, product, setProductActive }) => {
         <AddToCartButton
           onClick={() => {
             toCart({
-              ...product,
+              product,
               quantity,
             });
             setProductActive(null);

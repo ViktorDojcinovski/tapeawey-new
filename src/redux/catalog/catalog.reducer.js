@@ -2,6 +2,7 @@ import { catalogActionTypes } from "./catalog.actions";
 
 const initialState = {
   activeItem: null,
+  categories: [],
 };
 
 const catalogReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const catalogReducer = (state = initialState, action) => {
       return {
         ...state,
         activeItem: action.payload,
+      };
+    case catalogActionTypes.FETCH_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        categories: action.payload,
       };
 
     default:

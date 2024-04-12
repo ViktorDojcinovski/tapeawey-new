@@ -1,4 +1,5 @@
 import Product from "../../components/Product/product.component";
+import Cart from "../../components/Cart/cart.component";
 import {
   PageWrapper,
   CategoryPicker,
@@ -51,6 +52,7 @@ const CatalogPresenter = ({ hasActiveProduct, categories, onClickHandler }) => {
             );
           })}
         </ProductsWrap>
+        <Cart />
       </PageWrapper>
     </>
   );
