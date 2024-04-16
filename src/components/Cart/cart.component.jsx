@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -20,17 +20,27 @@ const CartPage = ({
   orderTotalPrice,
   deliveryPrice,
   cartProducts,
-  cartTotalQuantity,
   increaseQuantity,
   decreaseQuantity,
 }) => {
   let location = useLocation();
+  const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
 
   const conditionallyDecreaseQuantity = (product, location) => {
-    if (cartTotalQuantity > 1 || location === "/catalog") {
-      decreaseQuantity(product);
-    }
+    // if (cartTotalQuantity > 1 || location === "/catalog") {
+    //   decreaseQuantity(product);
+    // }
   };
+  // [1, 3, 4, 5] --> reduce((agg, item) => agg + item, 0)
+  useEffect(() => {
+    if (cartProducts) {
+      const cartTotalQuantity = cartProducts.reduce((agg, product) => {
+        return agg + product.price;
+      }, 0);
+      console.log("cartTotalQuantity", cartTotalQuantity);
+      setCartTotalQuantity(cartTotalQuantity);
+    }
+  }, [cartProducts]);
 
   return (
     <PageWrap

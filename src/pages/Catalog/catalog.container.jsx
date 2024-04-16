@@ -13,15 +13,19 @@ const Catalog = () => {
     dispatch(setActiveItem(id));
   };
   const categories = useSelector((state) => state.catalog.categories);
+  const products = useSelector((state) => state.cart.products);
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (products) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, products]);
 
   return (
     <CatalogPresenter
       hasActiveProduct={hasActiveProduct}
       categories={categories}
+      products={products}
       onClickHandler={onClickHandler}
     />
   );

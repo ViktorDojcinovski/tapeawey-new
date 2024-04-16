@@ -13,7 +13,17 @@ import {
   Dish,
 } from "./catalog.styles";
 
-const CatalogPresenter = ({ hasActiveProduct, categories, onClickHandler }) => {
+const CatalogPresenter = ({
+  hasActiveProduct,
+  categories,
+  products,
+  onClickHandler,
+}) => {
+  const orderTotalPrice = 15;
+  const deliveryPrice = 5;
+  const cartTotalPrice = orderTotalPrice + deliveryPrice;
+  const cartTotalQuantity = 1;
+
   return (
     <>
       {hasActiveProduct && (
@@ -26,7 +36,11 @@ const CatalogPresenter = ({ hasActiveProduct, categories, onClickHandler }) => {
           <PickerScrollMiddleWrap>
             <PickerScrollBottomWrap>
               {categories.map((category) => {
-                return <CategoryItem>{category.name}</CategoryItem>;
+                return (
+                  <div key={category.id}>
+                    <CategoryItem>{category.name}</CategoryItem>
+                  </div>
+                );
               })}
             </PickerScrollBottomWrap>
           </PickerScrollMiddleWrap>
@@ -35,24 +49,32 @@ const CatalogPresenter = ({ hasActiveProduct, categories, onClickHandler }) => {
         <ProductsWrap>
           {categories.map((category) => {
             return (
-              <>
+              <div key={category.id}>
                 <CategoryTitle>{category.name}</CategoryTitle>
                 <DishWrapper>
                   {category.products.items.map((item) => {
                     return (
-                      <Dish onClick={() => onClickHandler(item.id)}>
-                        <p>{item.name}</p>
-                        <p>{item.description}</p>
-                        <p>{item.price} eur</p>
-                      </Dish>
+                      <div key={item.id}>
+                        <Dish onClick={() => onClickHandler(item.id)}>
+                          <p>{item.name}</p>
+                          <p>{item.description}</p>
+                          <p>{item.price} eur</p>
+                        </Dish>
+                      </div>
                     );
                   })}
                 </DishWrapper>
-              </>
+              </div>
             );
           })}
         </ProductsWrap>
-        <Cart />
+        <Cart
+          cartProducts={products}
+          cartTotalPrice={cartTotalPrice}
+          orderTotalPrice={orderTotalPrice}
+          deliveryPrice={deliveryPrice}
+          cartTotalQuantity={cartTotalQuantity}
+        />
       </PageWrapper>
     </>
   );
